@@ -5,11 +5,10 @@ import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<page-router-outlet></page-router-outlet>',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Planificador de finales';
 
   static baseURL = 'http://192.168.0.35:8080/api';
 

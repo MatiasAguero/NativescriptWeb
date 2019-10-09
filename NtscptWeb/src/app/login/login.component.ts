@@ -15,10 +15,13 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
+  isAuthenticating = false;
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: UserInfo;
  
+  @ViewChild("password", { static: false }) password: ElementRef;
+
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, public router: Router) { }
  
   ngOnInit() {
@@ -28,9 +31,14 @@ export class LoginComponent implements OnInit {
     }
   }
  
+  focusPassword() {
+    this.password.nativeElement.focus();
+  }
+
   onSubmit() {
     console.log(this.form);
- 
+    this.isAuthenticating = true;
+
     this.loginInfo = new UserInfo(
       this.form.username,
       this.form.password);
@@ -43,18 +51,18 @@ export class LoginComponent implements OnInit {
  
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+
+        this.isAuthenticating = false;
+        
         this.roles = this.tokenStorage.getAuthorities();
-        this.goDashboard();
+        this.router.navigate(["/"]);
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
-        this.isLoginFailed = true;
+        alert("Error logueando:"+error.error.message);
       }
     );
   }
  
-  goDashboard() {
-    this.router.navigateByUrl('/dashboard');
-  }
+
 }

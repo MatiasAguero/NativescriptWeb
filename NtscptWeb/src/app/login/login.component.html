@@ -1,37 +1,54 @@
-<div *ngIf="isLoggedIn; else loggedOut">
-  Loguado como {{roles}}.
-  Ir al <a routerLink="/dashboard">Inicio</a>
-</div>
+<Label *ngIf="isLoggedIn; else loggedOut"
+text="Ya está laoguedo. Ir al inicio"
+[nsRouterLink]="['/dashboard']">
+</Label>
  
-<ng-template #loggedOut>
-  <div class="row col-sm-6" style="max-width:350px;">
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
-          required />
-        <div *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors.required">Debe ingresar un nombre de usuario</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-          required minlength="6" />
-        <div *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors.required">Debe ingresar una contraseña</div>
-          <div *ngIf="password.errors.minlength">La contraseña debe tener al menos 6 caracteres</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary">Login</button>
-        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-          Error logueando: {{errorMessage}}
-        </div>
-      </div>
-    </form>
-    <hr />
-    <p>¿No tienes una cuenta?</p>
-    <a routerLink="/register" routerLinkActive="active">Registrate</a>
-  </div>
-</ng-template>
+<StackLayout #mainContainer *ngIf="!isLoggedIn">
+
+  <TextField
+  hint="Username"
+  returnKeyType="next"
+  (returnPress)="focusPassword()"
+  [(ngModel)]="form.username"
+  [isEnabled]="!isAuthenticating"
+  autocorrect="false"
+  autocapitalizationType="none"
+  [class.light]="!isLoggingIn"
+  row="0"></TextField>
+
+  <Label *ngIf="f.submitted && username.invalid && username.errors.required"
+  text="Debe ingresar un nombre de usuario"></Label>
+
+
+  <TextField #password
+  hint="Password"
+  secure="true"
+  returnKeyType="done"
+  (returnPress)="submit()"
+  [(ngModel)]="form.password"
+  [isEnabled]="!isAuthenticating"
+  [class.light]="!isLoggingIn"
+  required minlength="6" 
+  row="1"></TextField>
+
+  <StackLayout *ngIf="f.submitted && password.invalid">
+    <Label *ngIf="password.errors.required" text="Debe ingresar una contraseña"></Label>
+    <Label *ngIf="password.errors.minlength" text="La contraseña debe tener al menos 6 caracteres"></Label>
+  </StackLayout>
+
+   <ActivityIndicator
+  [busy]="isAuthenticating"
+  rowSpan="2"></ActivityIndicator>
+
+  <Button
+  [text]="isLoggingIn ? 'Login' : 'Sign up'"
+  [isEnabled]="!isAuthenticating"
+  class="submit-button"
+  (tap)="onSubmit()"></Button>
+
+  <Label
+  text="No tienes una cuenta? Registrate"
+  [nsRouterLink]="['/register']"
+  [visibility]="isLoggingIn ? 'visible' : 'hidden'"></Label>
+
+</StackLayout>
