@@ -1,0 +1,36 @@
+<nav *ngIf="this.token.isAuthenticated()" class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">{{ token.getUsername() }}</p>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/logs" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-notification-clear-all"></i>
+        <span class="menu-title">Mis logs</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/carreras" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-dna"></i>
+        <span class="menu-title">Mis carreras</span>
+      </a>
+    </li>
+
+  </ul>
+</nav>
