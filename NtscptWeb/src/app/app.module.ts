@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from "@angular/common/http";
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbModule } from 'ng-bootstrap/ng-bootstrap';
 
 
 
@@ -60,6 +59,7 @@ import { UsrCarreraSubsComponent } from './usr-carrera-subs/usr-carrera-subs.com
     UsrCarreraSubsComponent
 
   ],
+  
   imports: [
     BrowserModule,
     RouterModule,
@@ -67,7 +67,7 @@ import { UsrCarreraSubsComponent } from './usr-carrera-subs/usr-carrera-subs.com
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    //NgbModule.forRoot()
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

@@ -11,10 +11,10 @@ import { LogService } from '../services/log.service';
   styleUrls: ['./new-log.component.scss']
 })
 export class NewLogComponent implements OnInit {
-  @ViewChild(MesasComponent/*, {static: false}*/)
+  @ViewChild(MesasComponent, {static: false})
   private mesas: MesasComponent;
 
-  @ViewChild(UserCarrerasComponent/*, {static: false}*/)
+  @ViewChild(UserCarrerasComponent, {static: false})
   private carreras: UserCarrerasComponent;
 
   constructor(private tokenService: TokenStorageService, private logService: LogService) { }

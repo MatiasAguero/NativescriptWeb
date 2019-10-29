@@ -3,5 +3,8 @@
   "android": {
     "v8Flags": "--expose_gc",
     "markingMode": "none"
+  },
+  "dependencies": {
+    "@auth0/angular-jwt": "^3.0.0"
   }
 }

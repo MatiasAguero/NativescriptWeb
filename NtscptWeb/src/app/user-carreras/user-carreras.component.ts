@@ -17,7 +17,7 @@ export class UserCarrerasComponent implements OnInit {
   carreras: Carrera[];
   selectedCarrera: Carrera;
 
-  @ViewChild(InscrMateriasComponent)
+  @ViewChild(InscrMateriasComponent, {static: false})
   public materias: InscrMateriasComponent;
   
   constructor(

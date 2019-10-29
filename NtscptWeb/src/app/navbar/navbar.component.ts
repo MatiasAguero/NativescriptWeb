@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  providers: [NgbDropdownConfig]
+  //providers: [NgbDropdownConfig]
 })
 export class NavbarComponent implements OnInit {
   public sidebarOpened = false;
@@ -23,8 +23,8 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  constructor(config: NgbDropdownConfig, private token: TokenStorageService, public router: Router) {
-    config.placement = 'bottom-right';
+  constructor(private token: TokenStorageService, public router: Router) {
+    
   }
 
   ngOnInit() {
