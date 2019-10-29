@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import * as appSettings from "tns-core-modules/application-settings";
  
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
@@ -14,37 +15,37 @@ export class TokenStorageService {
   constructor() { }
  
   signOut() {
-    window.sessionStorage.clear();
+   appSettings.clear();
   }
  
   public saveToken(token: string) {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    appSettings.remove(TOKEN_KEY);
+    appSettings.setString(TOKEN_KEY, token);
   }
  
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+    return appSettings.getString(TOKEN_KEY);
   }
  
   public saveUsername(username: string) {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, username);
+    appSettings.remove(USERNAME_KEY);
+    appSettings.setString(USERNAME_KEY, username);
   }
  
   public getUsername(): string {
-    return sessionStorage.getItem(USERNAME_KEY);
+    return appSettings.getString(USERNAME_KEY);
   }
  
   public saveAuthorities(authorities: string[]) {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    appSettings.remove(AUTHORITIES_KEY);
+    appSettings.setString(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
  
   public getAuthorities(): string[] {
     this.roles = [];
  
-    if (sessionStorage.getItem(TOKEN_KEY)) {
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
+    if (appSettings.getString(TOKEN_KEY)) {
+      JSON.parse(appSettings.getString(AUTHORITIES_KEY)).forEach(authority => {
         this.roles.push(authority.authority);
       });
     }
