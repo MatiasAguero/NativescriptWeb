@@ -12,12 +12,14 @@ import { LoginComponent } from '@src/app/login/login.component';
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
+import { RegisterComponent } from '@src/app/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     NativeScriptModule,
