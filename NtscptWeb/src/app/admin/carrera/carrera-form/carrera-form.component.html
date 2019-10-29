@@ -1,21 +1,25 @@
-<form [formGroup]="carreraForm" (ngSubmit)="add(carreraForm)">
-  <input formControlName="nombre" placeholder="Nombre de la carrera" [attr.disabled]="isEdit ? true : null">
-  <input type="number" formControlName="cantidadMaterias" placeholder="Cantidad de materias:">
-	<button type="button" (click)="addSubjects(carreraForm.get('cantidadMaterias').value)">Agregar materias</button>
+ <TextField hint="Nombre de la carrera" returnKeyType="next" [(ngModel)]="nombre" [isEnabled]="!isEdit" autocorrect="false" autocapitalizationType="none"></TextField>
 
-	<div>
-		<div formArrayName="subjects"
-		 		*ngFor="let subject of carreraForm.get('subjects').controls; let i = index;">
-			    <input placeholder="Nombre de la materia" value="{{ subject.value }}" formControlName="{{ i }}">
-		  		<button type="button" (click)="deleteSubject(i)">Borrar</button>
-		</div>
-		<button type="button" (click)="addSubjects(1)">+1</button>
-	</div>
+  <TextField hint="Cantidad de materias" returnKeyType="next" [(ngModel)]="cantidadMaterias" [isEnabled]="!isEdit" autocorrect="false" keyboardType="number"></TextField>
 
-	<button
-      type="submit"
-      class="btn btn-primary"
-      [attr.disabled]="submitting ? true : null"
-      [innerText]="submitBtnText"></button>
+<Button (tap)="addSubjects(carreraForm.get('cantidadMaterias').value)" text="Agregar materias"></Button>
 
-</form>
+<ListView [items]="carreraForm.get('subjects').controls">
+	<ng-template let-item="subject" let-i="index">
+		<TextField hint="Nombre de la materia" value="{{ subject.value }}" autocapitalizationType="none" formControlName="{{ i }}"></TextField>
+		<Button (tap)="deleteSubject(i)" text="Borrar"></Button>
+	</ng-template>
+</ListView>
+
+
+<Button
+[text]="+1"
+[isEnabled]="!submitting"
+class="btn"
+(tap)="addSubjects(1)"></Button>
+
+<Button
+[text]="submitBtnText"
+[isEnabled]="!submitting"
+class="btn btn-primary"
+(tap)="add(carreraForm)"></Button>
