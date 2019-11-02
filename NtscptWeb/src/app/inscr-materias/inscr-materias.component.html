@@ -1,9 +1,9 @@
-<h2>Inscripcion</h2>
-<h3>Seleccione la materia a la cual inscribirse</h3>
+<Label txt="Inscripcion"></Label>
+<Label text="Seleccione la materia a la cual inscribirse"></Label>
 
-<ul class="materias">
-  <li *ngFor="let materia of materias">
-      <span class="badge">{{materia}}</span>
-      <button (click)="selectMateria(materia)">Seleccionar</button>
-  </li>
-</ul>
+<ListView items="materias">
+	<ng-template let-item="materia" let-i="index">
+      <Label class="badge" text="{{materia}}"></Label>
+      <Button (tap)="selectMateria(materia)" text="Seleccionar"></Button>
+	</ng-template>
+</ListView>

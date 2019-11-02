@@ -1,31 +1,28 @@
-<form (ngSubmit)="send()">
-  <input id="name" name="name" class="form-control"
-      required minlength="4"
-      [(ngModel)]="newMesa.nombre" #name="ngModel" >
-  <div *ngIf="name.invalid && (name.dirty || name.touched)"
+<TextField hint="Nombre de la mesa" returnKeyType="next" id="name" name="name"
+required minlength="4"
+[(ngModel)]="newMesa.nombre" #name="ngModel" ></TextField>
+
+
+  <Label *ngIf="name.invalid && (name.dirty || name.touched)"
     class="alert alert-danger">
-	  <div *ngIf="name.errors.required">
-	    Debe ingresar un nombre a la mesa.
-	  </div>
-	  <div *ngIf="name.errors.minlength">
-	    El nombre debe tener al menos cuatro caracteres.
-	  </div>
-	</div>
+	  <Label *ngIf="name.errors.required" text="Debe ingresar un nombre a la mesa."></Label>
+	  <Label *ngIf="name.errors.minlength" text="El nombre debe tener al menos cuatro caracteres."></Label>
+	</Label>
 
+<DatePicker id="desde" name="desde"
+            verticalAlignment="center"
+            [(ngModel)]="newMesa.fechaDesde" #desde="ngModel" required>
+</DatePicker>
 
-	<input type="date" id="desde" name="desde" class="form-control"
-      required appForbiddenName="bob"
-      [(ngModel)]="newMesa.fechaDesde" #desde="ngModel" >
+<DatePicker id="hasta" name="hasta"
+            [minDate]="newMesa.fechaDesde"
+            (loaded)="onDatePickerLoaded($event)"
+            verticalAlignment="center"
+            [(ngModel)]="newMesa.fechaHasta" #hasta="ngModel" required>
+</DatePicker>
 
-	<input type="date" id="hasta" name="hasta" class="form-control"
-      required appForbiddenName="bob"
-      [(ngModel)]="newMesa.fechaHasta" #hasta="ngModel" >
-
-	<button
-      type="submit"
-      class="btn btn-primary"
-      
-      [innerText]="submitBtnText"></button>
-  		<!-- [attr.disabled]="mesaForm.invalid || submitting ? true : null" -->
-
-</form>
+<Button
+class="btn btn-primary"
+(tap)="send()"
+[Text]="submitBtnText"></Button>
+<!-- [attr.disabled]="mesaForm.invalid || submitting ? true : null" -->

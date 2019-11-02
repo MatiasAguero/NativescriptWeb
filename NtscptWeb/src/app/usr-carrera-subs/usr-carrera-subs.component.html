@@ -1,11 +1,11 @@
-<h2>Inscripcion</h2>
-<h3>Seleccione a qué carreras se quiere inscribir</h3>
+<Label text="Inscripcion"></Label>
+<Label text="Seleccione a qué carreras se quiere inscribir"></Label>
 
-<ul class="carreras">
-  <li *ngFor="let carrera of carreras">
-  	<span class="badge">{{carrera.nombre}}</span>
-  	<button (click)="selectedCarreraEvent(carrera)">Seleccionar</button>
-  </li>
-</ul>
+<ListView items="carreras">
+	<ng-template let-item="carrera" let-i="index">
+  	<Label class="badge" text="{{carrera.nombre}}"></Label>
+  	<Button (tap)="selectedCarreraEvent(carrera)" text="Seleccionar"></Button>
+	</ng-template>
+</ListView>
 
-<button (click)="setCarreras(carrera)">Inscribirse</button>
+<Button (tap)="setCarreras(carrera)" text="Inscribirse"></Button>

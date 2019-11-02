@@ -1,6 +1,6 @@
 <app-mesas></app-mesas>
 <app-user-carreras [hidden]="!mesas.selectedMesa"></app-user-carreras>
-<button *ngIf="mesas.selectedMesa && carreras.selectedCarrera && carreras.materias.selectedMateria" (click)="generateLog()" >Generar log</button>
+<<Button *ngIf="mesas.selectedMesa && carreras.selectedCarrera && carreras.materias.selectedMateria" (tap)="generateLog()"  text="Generar log"></button>
 
 
 <!--

@@ -1,6 +1,6 @@
-<ul class="mesas">
-  <li *ngFor="let mesa of mesas">
-    <span class="badge">{{mesa.nombre}}</span> {{mesa.fechaDesde}} {{mesa.fechaHasta}}
-    <button *ngIf="!this.isInMesaAdmin" type="button" class="btn btn-success btn-fw" (click)="selectMesa(mesa)">Anotarse</button>
-  </li>
-</ul>
+ <ListView items="mesas">
+ 	<ng-template let-item="mesa" let-i="index">
+    <Label class="badge" text="{{mesa.nombre}} {{mesa.fechaDesde}} {{mesa.fechaHasta}}"></Label>
+    <Button *ngIf="!this.isInMesaAdmin" type="button" class="btn btn-success btn-fw" (tap)="selectMesa(mesa)" text="Anotarse"></Button>
+	</ng-template>
+</ListView>

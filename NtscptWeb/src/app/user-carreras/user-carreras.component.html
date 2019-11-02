@@ -1,11 +1,11 @@
-<h2>Inscripcion</h2>
-<h3>Carrera a la que pertenece la materia a la que se quiere anotar</h3>
+<Label text="Inscripcion"></Label>
+<Label text="Carrera a la que pertenece la materia a la que se quiere anotar"></Label>
 
-<ul class="carreras">
-  <li *ngFor="let carrera of carreras">
-  	<span class="badge">{{carrera.nombre}}</span>
-  	<button (click)="setCarrera(carrera)">Seleccionar</button>
-  </li>
-</ul>
+<ListView items="carreras">
+	<ng-template let-item="carrera" let-i="index">
+  	<Label class="badge" text="{{carrera.nombre}}"></Label>
+  	<Button (tap)="setCarrera(carrera)" text="Seleccionar"></Button>
+	</ng-template>
+</ListView>
 
 <app-inscr-materias [hidden]="!this.selectedCarrera" [carrera]="this.selectedCarrera"></app-inscr-materias>
