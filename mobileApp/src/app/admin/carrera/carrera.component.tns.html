@@ -1,0 +1,47 @@
+<StackLayout>
+	<Label text="Administración de carreras"></Label>
+
+	<Label text="Agregar carrera"></Label>
+  <app-carrera-form (edit)="carreraAdded($event)"></app-carrera-form>
+
+
+	<Label text="Lista de carreras"></Label>
+
+<ListView [items]="carreras">
+	<ng-template let-carrera="item" let-i="index">
+
+		 <GridLayout
+      columns="*, auto"
+      class="container">
+
+      <StackLayout
+        col="0"
+        orientation="horizontal">
+        <Label
+          [text]="carrera.nombre"></Label>
+      </StackLayout>
+
+      <GridLayout
+        col="1"
+        class="modify-container"
+        (tap)="updateCarrera(carrera)">
+        <StackLayout>
+          <Image src="res://delete"></Image>
+        </StackLayout>
+      </GridLayout>
+
+      <GridLayout
+        col="2"
+        class="delete-container"
+        (tap)="delCarrera(carrera,index)">
+        <StackLayout>
+          <Image src="res://delete"></Image>
+        </StackLayout>
+      </GridLayout>
+
+      <app-carrera-form (edit)="carreraUpdated($event)" *ngIf="carrera.nombre == selectedCarrera" [carreraIn]="carrera"></app-carrera-form>
+		</GridLayout>
+
+  </ng-template>
+</ListView>
+</StackLayout>

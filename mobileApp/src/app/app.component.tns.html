@@ -1,1 +1,52 @@
-  <page-router-outlet></page-router-outlet>
+<RadSideDrawer [drawerTransition]="sideDrawerTransition">
+    <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer-left">
+        <StackLayout row="0" class="sidedrawer-header">
+            <Label class="sidedrawer-header-brand" text="User Name"></Label>
+            <Label class="sidedrawer-header-footnote" text="username@mail.com"></Label>
+        </StackLayout>
+
+        <ScrollView row="1" class="sidedrawer-content">
+            <StackLayout>
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/home')" (tap)="onNavItemTap('/home')">
+                    <Label col="1" text="Home" class="m-t-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/admin/carrera')" (tap)="onNavItemTap('/admin/carrera')">
+                    <Label col="1" text="AdminCarrera" class="m-t-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/admin/mesa')" (tap)="onNavItemTap('/admin/mesa')">
+                    <Label col="1" text="AdminMesa" class="m-t-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/search')" (tap)="onNavItemTap('/login')">
+                    <Label col="1" text="Login" class="m-t-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/inscripcion')" (tap)="onNavItemTap('/inscripcion')">
+                    <Label col="1" text="Inscribirse a final" class="m-t-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/logs')" (tap)="onNavItemTap('/logs')">
+                    <Label col="1" text="Logs" class="m-t-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/featured')" (tap)="onNavItemTap('/register')">
+                    <Label col="1" text="register" class="m-t-10"></Label>
+                </GridLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/addCarrera')" (tap)="onNavItemTap('/addCarrera')">
+                    <Label col="1" text="Inscribirse a carrera" class="m-t-10"></Label>
+                </GridLayout>
+
+                <StackLayout class="hr"></StackLayout>
+
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.-selected]="isComponentSelected('/mesas')" (tap)="onNavItemTap('/mesas')">
+                    <Label col="1" text="Mesas" class="m-t-10"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+
+    <page-router-outlet tkMainContent></page-router-outlet>
+</RadSideDrawer>

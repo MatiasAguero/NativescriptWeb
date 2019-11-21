@@ -1,0 +1,9 @@
+<StackLayout *ngIf="log">
+  <Label text="Detalle {{log.fecha | date: shortDate}}"></Label>
+  <Label text="ID: {{log.id}}"></Label>
+  <Label text="Carrera: {{log.carrera}}"></Label>
+  <Label text="Materia: {{log.materia}}"></Label>
+  <Label text="Mesa: {{log.mesa}}"></Label>
+  <Label text="Estado: {{log.estado}}"></Label>
+  <Button text="Volver" (tap)="goBack()"></Button>
+</StackLayout>

@@ -1,0 +1,29 @@
+<StackLayout [formGroup]="carreraForm">
+	<TextField hint="Nombre de la carrera" returnKeyType="next" formControlName="nombre" [isEnabled]="!isEdit" autocorrect="false" autocapitalizationType="none"></TextField>
+
+	 <TextField hint="Cantidad de materias" returnKeyType="next" formControlName="cantidadMaterias" [isEnabled]="!isEdit" autocorrect="false" keyboardType="number"></TextField>
+
+	<Button (tap)="addSubjects(carreraForm.get('cantidadMaterias').value)" text="Agregar materias"></Button>
+
+	<ListView [items]="carreraForm.get('subjects').controls" formArrayName="subjects">
+	 <ng-template let-subject="item" let-i="index">
+		 <GridLayout columns="*,auto">
+	   <TextField column="0" hint="Nombre de la materia" value="{{ subject.value }}" autocapitalizationType="none" [formControl]="subject"></TextField> 
+	   <Button column="1" (tap)="deleteSubject(i)" text="Borrar"></Button>
+		 </GridLayout>
+	 </ng-template>
+	</ListView>
+
+	<Button
+	[text]="+1"
+	[isEnabled]="!submitting"
+	class="btn"
+	(tap)="addSubjects(1)"></Button>
+
+	<Button
+	[text]="submitBtnText"
+	[isEnabled]="!submitting"
+	class="btn btn-primary"
+	(tap)="add(carreraForm)"></Button>
+
+</StackLayout>

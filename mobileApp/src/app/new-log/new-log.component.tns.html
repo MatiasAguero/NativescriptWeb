@@ -1,0 +1,5 @@
+<StackLayout>
+<app-mesas></app-mesas>
+<app-user-carreras *ngIf="mesaSelected"></app-user-carreras>
+<Button *ngIf="mesaSelected && carreraSelected && materiaSelected" (tap)="generateLog()"  text="Generar log"></Button>
+</StackLayout>

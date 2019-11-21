@@ -1,0 +1,11 @@
+<StackLayout>
+<ListView [items]="mesas" height="100">
+ <ng-template let-mesa="item" let-i="index">
+   <GridLayout columns="*,auto">
+   <Label class="badge" col="0" row="0" text="{{mesa.nombre}} {{mesa.fechaDesde | date : 'shortDate'}} {{mesa.fechaHasta| date : 'shortDate'}}"></Label>
+   <Button *ngIf="!this.isInMesaAdmin" col="1" row="0" type="button" class="btn btn-success btn-fw" (tap)="selectMesa(mesa)" text="Anotarse"></Button>
+   </GridLayout>
+
+ </ng-template>
+</ListView>
+</StackLayout>

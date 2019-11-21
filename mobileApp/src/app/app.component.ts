@@ -1,12 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
+import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
+import { filter } from "rxjs/operators";
+import * as app from "tns-core-modules/application";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
 
-	static baseURL = 'http://192.168.0.35:8080/api';
+export class AppComponent implements OnInit {
+    private _activatedUrl: string;
+    private _sideDrawerTransition: DrawerTransitionBase;
+	static baseURL = 'http://10.13.32.177:8080/api';
 	
+    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+        // Use the component constructor to inject services.
+    }
+
+    ngOnInit(): void {
+        this._activatedUrl = "/home";
+        this._sideDrawerTransition = new SlideInOnTopTransition();
+
+        this.router.events
+        .pipe(filter((event: any) => event instanceof NavigationEnd))
+        .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
+    }
+
+    get sideDrawerTransition(): DrawerTransitionBase {
+        return this._sideDrawerTransition;
+    }
+
+    isComponentSelected(url: string): boolean {
+        return this._activatedUrl === url;
+    }
+
+    onNavItemTap(navItemRoute: string): void {
+        this.routerExtensions.navigate([navItemRoute], {
+            transition: {
+                name: "fade"
+            }
+        });
+
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.closeDrawer();
+    }
+
+	toggleDrawer() {
+	
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.toggleDrawerState();
+	
+    }
+    
 }
+

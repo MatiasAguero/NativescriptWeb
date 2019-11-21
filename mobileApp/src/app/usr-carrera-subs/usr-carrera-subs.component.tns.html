@@ -1,0 +1,15 @@
+<StackLayout>
+<Label text="Inscripcion"></Label>
+<Label text="Seleccione a qué carreras se quiere inscribir"></Label>
+
+<ListView [items]="carreras">
+	<ng-template let-carrera="item" let-i="index">
+		<GridLayout columns="*,auto">
+		<Label class="badge" col="0" row="0" text="{{carrera.nombre}}"></Label>
+		<Button (tap)="selectedCarreraEvent(carrera)" col="1" row="0" text="Seleccionar"></Button>
+		</GridLayout>
+	</ng-template>
+</ListView>
+
+<Button (tap)="setCarreras(carrera)" text="Inscribirse"></Button>
+</StackLayout>

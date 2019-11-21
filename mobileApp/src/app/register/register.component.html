@@ -18,9 +18,6 @@
 
   <Label *ngIf="f.submitted && username.invalid && username.errors.required">Debe ingresar un nombre de usuario</Label>
 
-  <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-          required minlength="6" />
-
     <TextField #password
     hint="Password"
     secure="true"

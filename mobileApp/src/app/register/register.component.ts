@@ -1,37 +1,44 @@
 import { ElementRef, ViewChild, Component, OnInit } from '@angular/core';
- 
 import { AuthService } from '../auth/auth.service';
 import { UserInfo } from '../auth/user-info';
- 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  form: any = {};
   signupInfo: UserInfo;
   isSignedUp = false;
   isSignUpFailed = false;
   isRegistering= false;
+  user: string;
+  pass: string;
   errorMessage = '';
 
-  @ViewChild("password", { static: false }) password: ElementRef;
+  @ViewChild("passwrd", { static: false }) passwrd: ElementRef;
  
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) { 
+  
+ 
+  }
 
   focusPassword() {
-    this.password.nativeElement.focus();
+    this.passwrd.nativeElement.focus();
   }
  
-  ngOnInit() { }
+  ngOnInit() { 
+  
+	
+  }
  
   onSubmit() {
-    console.log(this.form);
  
     this.signupInfo = new UserInfo(
-      this.form.username,
-      this.form.password);
+      this.user,
+      this.pass);
+    alert(this.user);
+    alert(this.pass);
     this.isRegistering=true;
     this.authService.signUp(this.signupInfo).subscribe(
       data => {

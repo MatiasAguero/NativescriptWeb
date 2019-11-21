@@ -1,12 +1,4 @@
-<StackLayout>
-  <Label text="register works" textWrap="true"></Label>
-  <Label text="This is a migrated component" textWrap="true"></Label>
-  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label>
-</StackLayout>
-
-<!--
-Original Web template:
-
+<Page xmlns="http://schemas.nativescript.org/tns.xsd">
 <Label *ngIf="isSignedUp; else signupForm"
   text="Registrado correctamente. Por favor ingrese!"
   [nsRouterLink]="['/login']">
@@ -18,45 +10,44 @@ Original Web template:
         hint="Username"
         returnKeyType="next"
         (returnPress)="focusPassword()"
-        [(ngModel)]="form.username"
+		[(ngModel)]="user"
         [isEnabled]="!isRegistering"
         autocorrect="false"
         autocapitalizationType="none"
         row="0"></TextField>
 
 
-  <Label *ngIf="f.submitted && username.invalid && username.errors.required">Debe ingresar un nombre de usuario</Label>
+<!--  <Label *ngIf="f.submitted && username.invalid && username.errors.required">Debe ingresar un nombre de usuario</Label>
+ -->
 
-  <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-          required minlength="6" />
-
-    <TextField #password
+    <TextField #passwrd
     hint="Password"
     secure="true"
     returnKeyType="done"
     (returnPress)="submit()"
     [isEnabled]="!isRegistering"
-    [(ngModel)]="form.password"
+    [(ngModel)]="pass";
     required minlength="6" 
     row="1"></TextField>
 
+<!--
   <StackLayout *ngIf="f.submitted && password.invalid">
     <Label *ngIf="password.errors.required" text="Debe ingresar una contraseña"></Label>
     <Label *ngIf="password.errors.minlength" text="La contraseña debe tener al menos 6 caracteres"></Label>
   </StackLayout>
-
+-->
      <ActivityIndicator
     [busy]="isRegistering"
     rowSpan="2"></ActivityIndicator>
 
     <Button
-  [text]="Registrarse"
+  text="Registrarse"
   [isEnabled]="!isRegistering"
   class="submit-button"
-  (tap)="f.form.valid && onSubmit()"></Button>
+  (tap)="onSubmit()"></Button>
 
 
-  <Label *ngIf="f.submitted && isSignUpFailed" text="Falla en el registro! {{errorMessage}}"></Label>
+  <!--<Label *ngIf="f.submitted && isSignUpFailed" text="Falla en el registro! {{errorMessage}}"></Label>-->
 
 </StackLayout>
--->
+</Page>

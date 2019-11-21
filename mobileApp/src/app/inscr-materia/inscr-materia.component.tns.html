@@ -1,0 +1,13 @@
+<StackLayout>
+<Label txt="Inscripcion"></Label>
+<Label text="Seleccione la materia a la cual inscribirse"></Label>
+
+<ListView [items]="materias">
+	<ng-template let-materia="item" let-i="index">
+	  <GridLayout columns="*,auto">
+	      <Label class="badge" col="0" row="0" text="{{materia}}"></Label>
+    	  <Button (tap)="selectMateria(materia)" col="1" row="0" text="Seleccionar"></Button>
+	 </GridLayout>
+	</ng-template>
+</ListView>
+</StackLayout>

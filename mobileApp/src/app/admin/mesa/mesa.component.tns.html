@@ -1,0 +1,13 @@
+<ScrollView>
+<StackLayout>
+	<Label text="Administración de mesas"></Label>
+
+	<Label text="Agregar Mesa"></Label>
+	<app-mesa-form (add)="mesaAdded($event)"></app-mesa-form>
+
+
+	<Label text="Lista de mesas"></Label>
+	<app-mesas [add]="this.evento"></app-mesas>
+</StackLayout>
+
+</ScrollView>

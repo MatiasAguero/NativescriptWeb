@@ -1,15 +1,22 @@
+<StackLayout>
 <Label *ngIf="isLoggedIn; else loggedOut"
-text="Ya está laoguedo. Ir al inicio"
-[nsRouterLink]="['/dashboard']">
+text="Ya está loguedo. Ir al inicio"
+[nsRouterLink]="['/home']">
 </Label>
- 
+
+ <Label *ngIf="isLoggedIn; else loggedOut"
+text="logout"
+(tap)="logout()">
+</Label>
+ </StackLayout>
+
 <StackLayout #mainContainer *ngIf="!isLoggedIn">
 
   <TextField
   hint="Username"
   returnKeyType="next"
   (returnPress)="focusPassword()"
-  [(ngModel)]="form.username"
+  [(ngModel)]="username"
   [isEnabled]="!isAuthenticating"
   autocorrect="false"
   autocapitalizationType="none"
@@ -20,15 +27,15 @@ text="Ya está laoguedo. Ir al inicio"
   text="Debe ingresar un nombre de usuario"></Label> -->
 
 
-  <TextField #password
+  <TextField #passwrd
   hint="Password"
   secure="true"
   returnKeyType="done"
-  (returnPress)="submit()"
-  [(ngModel)]="form.password"
+  (returnPress)="onSubmit()"
+  [(ngModel)]="password"
   [isEnabled]="!isAuthenticating"
   [class.light]="!isLoggingIn"
-  required minlength="6" 
+  required minlength="6"
   row="1"></TextField>
 
 <!--  <StackLayout *ngIf="f.submitted && password.invalid">
@@ -43,7 +50,7 @@ text="Ya está laoguedo. Ir al inicio"
   <Button
   text="Login"
   [isEnabled]="!isAuthenticating"
-  class="submit-button"
+  class="btn btn-primary"
   (tap)="onSubmit()"></Button>
 
   <Label

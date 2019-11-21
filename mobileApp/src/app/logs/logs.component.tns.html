@@ -1,0 +1,19 @@
+<StackLayout>
+	<Label class="h2" text="Historial"></Label>
+
+	<ListView [items]="logs" heigth="500">
+		<ng-template let-log="item" let-i="index">
+		<StackLayout>
+			<StackLayout orientation="horizontal">
+				<Label  routerLink="/detalle-log/{{log.id}}" text="{{log.id}} {{log.fecha | date:'shortDate'}}"></Label>
+				<Button text="Ver detalles" (tap)="getDetalles(log, i)"></Button>
+				<Label text="{{log.estado}}"></Label>
+				<Button class="btn btn-outline-secondary icon-btn" text="Editar" (tap)="modify(log, i)"></Button>
+				<Button class="btn btn-outline-secondary icon-btn" text="Borrar" (tap)="delete(log, i)" ></Button>
+			</StackLayout>
+ 		
+		</StackLayout>
+		</ng-template>
+	</ListView>
+	
+</StackLayout>
